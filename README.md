@@ -1,11 +1,24 @@
 # RIFT Client 1.0.0 Beta
 
-This repository holds the build snapshot for the RIFT Client Windows x64 beta. The maintained, editable project is distributed as `RIFT-Client-v1.0.0-Beta-Source.zip` from the developer workspace; the versioned build snapshot in this repo is split into `source-bundle-00.b64` … `source-bundle-08.b64` so GitHub Actions can reconstruct it without losing binary branding assets.
+RIFT is an independent Minecraft Java launcher project with original red-and-black branding.
 
-## Build
-Pushes to `main`, version tags, and manual workflow runs invoke a Windows runner. CI restores the source snapshot, regenerates the branded RC icon and NSIS artwork, runs the source/syntax checks, builds `RIFT-Setup-x64.exe`, and uploads the EXE plus SHA-256 metadata as a 14-day Actions artifact.
+## Current repository status
 
-## Current status
-This is an unreleased beta. Actual Windows installation, Microsoft sign-in, supported loader matrix, and a real Minecraft game launch still require Windows runtime validation. The website release manifest remains unpublished until those checks pass.
+This repository is not yet a verified Windows release. The complete editable project is delivered separately as `RIFT-Client-v1.0.0-Beta-Source.zip` in the associated work session. No installer or game-launch result should be inferred from this README.
 
-The source snapshot intentionally does not contain Minecraft game files or Java runtimes; those are downloaded on demand by the launcher library.
+## Project direction
+
+- Maintain one source root named `rift source/`.
+- Keep the website source under `rift source/websitepro/`.
+- Use a branded NSIS assisted setup with a selectable installation folder, Desktop and Start Menu shortcuts, and an uninstaller that preserves profiles/game data.
+- Build Windows x64 on a Windows runner so Electron and NSIS dependencies are installed for the right platform.
+- Fetch Minecraft versions and required game/runtime files only when needed; do not package the entire game ecosystem in the initial installer.
+- Publish a stable release only after Windows installation, authentication, version installation, and actual game launch have been verified.
+
+## Build source
+
+Use the delivered source ZIP and run `client/BUILD-WINDOWS.bat` on Windows. Node.js and an active network connection to the npm registry are required. It runs the branding generator, project tests, and the Electron Builder NSIS packaging target.
+
+## Beta disclaimer
+
+Windows compilation and real Minecraft game launching have not been verified in this repository yet. Do not advertise a downloadable installer until the build artifact exists and passes Windows testing.
